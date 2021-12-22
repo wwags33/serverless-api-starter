@@ -1,4 +1,4 @@
-# serverless-api-app
+# Serverless API Starter
 
 To build:  
 `sam build`
