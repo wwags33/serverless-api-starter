@@ -1,0 +1,21 @@
+{
+  "name": "hellolambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-embedded-metrics": "^2.0.4",
+    "aws-sdk": "^2.1047.0",
+    "aws-xray-sdk-core": "^3.3.4"
+  },
+  "dependencies": {}
+}

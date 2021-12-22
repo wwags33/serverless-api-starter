@@ -1,0 +1,94 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Transform:
+  - AWS::Serverless-2016-10-31
+
+Description: >-
+  serverless-api-starter
+
+Globals:
+  Function:
+    Runtime: nodejs14.x
+    Timeout: 60
+    Tracing: Active
+    Environment:
+      Variables:
+        METRICS_NAMESPACE: ServerlessApiApp
+    Layers:
+      - !Ref libs
+
+Parameters:
+  StageNameParam:
+    Type: String
+    Default: dev
+
+Resources:
+  ApiAccessLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/apigateway/AccessLog-${RestApi}
+      RetentionInDays: 365
+
+  RestApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      OpenApiVersion: 3.0.1
+      MethodSettings:
+        - HttpMethod: "*"
+          ResourcePath: "/*"
+          DataTraceEnabled: true
+          MetricsEnabled: true
+          LoggingLevel: INFO
+      AccessLogSetting:
+        DestinationArn: !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${ApiAccessLogGroup}"
+        Format: '$context.identity.sourceIp $context.authorizer.claims.sub [$context.requestTime] "$context.httpMethod $context.resourcePath $context.protocol" $context.status $context.requestId $context.awsEndpointRequestId $context.xrayTraceId $context.responseLatency $context.integrationLatency "$context.error.message"'
+      Name: ServerlessRestApi
+      StageName: !Ref StageNameParam
+      TracingEnabled: true
+      Cors:
+        AllowOrigin: "'*'"
+        AllowMethods: "'OPTIONS,HEAD,GET,PUT,POST,DELETE'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: SdkAndMetrics
+      Description: Common lambda node dependencies.
+      ContentUri: api/src/libs
+      CompatibleRuntimes:
+        - nodejs14.x
+
+  HelloLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: api/src/helloLambda
+      Handler: index.helloFromLambdaHandler
+      Tracing: Active
+      Policies:
+        # Give Lambda basic execution Permission to the helloFromLambda
+        - CloudWatchPutMetricPolicy: {}
+      Events:
+        GetHello:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
+            RestApiId: !Ref RestApi
+
+  GoodbyeLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: api/src/goodbyeLambda
+      Handler: index.goodbyeFromLambdaHandler
+      Tracing: Active
+      Policies:
+        # Give Lambda basic execution Permission to the helloFromLambda
+        - CloudWatchPutMetricPolicy: {}
+      Events:
+        GetGoodbye:
+          Type: Api
+          Properties:
+            Path: /goodbye
+            Method: get
+            RestApiId: !Ref RestApi

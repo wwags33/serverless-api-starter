@@ -1,0 +1,133 @@
+{
+  "resource": "/hello",
+  "path": "/hello",
+  "httpMethod": "GET",
+  "headers": {
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Accept-Language": "en-US,en;q=0.5",
+      "CloudFront-Forwarded-Proto": "https",
+      "CloudFront-Is-Desktop-Viewer": "true",
+      "CloudFront-Is-Mobile-Viewer": "false",
+      "CloudFront-Is-SmartTV-Viewer": "false",
+      "CloudFront-Is-Tablet-Viewer": "false",
+      "CloudFront-Viewer-Country": "US",
+      "Host": "5ct1wggkxd.execute-api.us-east-2.amazonaws.com",
+      "sec-fetch-dest": "document",
+      "sec-fetch-mode": "navigate",
+      "sec-fetch-site": "none",
+      "sec-fetch-user": "?1",
+      "upgrade-insecure-requests": "1",
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101 Firefox/96.0",
+      "Via": "2.0 0966e391a888bbbf91b4b075b1b57a83.cloudfront.net (CloudFront)",
+      "X-Amz-Cf-Id": "eBsZq-JupT_1hay2FzRk4nNhdH9XWV3nxauQACRd6ERDtXw_wfNZsQ==",
+      "X-Amzn-Trace-Id": "Root=1-61c3910c-553bda046b30d7683ee50a54",
+      "X-Forwarded-For": "96.44.189.110, 130.176.65.139",
+      "X-Forwarded-Port": "443",
+      "X-Forwarded-Proto": "https"
+  },
+  "multiValueHeaders": {
+      "Accept": [
+          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"
+      ],
+      "Accept-Encoding": [
+          "gzip, deflate, br"
+      ],
+      "Accept-Language": [
+          "en-US,en;q=0.5"
+      ],
+      "CloudFront-Forwarded-Proto": [
+          "https"
+      ],
+      "CloudFront-Is-Desktop-Viewer": [
+          "true"
+      ],
+      "CloudFront-Is-Mobile-Viewer": [
+          "false"
+      ],
+      "CloudFront-Is-SmartTV-Viewer": [
+          "false"
+      ],
+      "CloudFront-Is-Tablet-Viewer": [
+          "false"
+      ],
+      "CloudFront-Viewer-Country": [
+          "US"
+      ],
+      "Host": [
+          "5ct1wggkxd.execute-api.us-east-2.amazonaws.com"
+      ],
+      "sec-fetch-dest": [
+          "document"
+      ],
+      "sec-fetch-mode": [
+          "navigate"
+      ],
+      "sec-fetch-site": [
+          "none"
+      ],
+      "sec-fetch-user": [
+          "?1"
+      ],
+      "upgrade-insecure-requests": [
+          "1"
+      ],
+      "User-Agent": [
+          "Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101 Firefox/96.0"
+      ],
+      "Via": [
+          "2.0 0966e391a888bbbf91b4b075b1b57a83.cloudfront.net (CloudFront)"
+      ],
+      "X-Amz-Cf-Id": [
+          "eBsZq-JupT_1hay2FzRk4nNhdH9XWV3nxauQACRd6ERDtXw_wfNZsQ=="
+      ],
+      "X-Amzn-Trace-Id": [
+          "Root=1-61c3910c-553bda046b30d7683ee50a54"
+      ],
+      "X-Forwarded-For": [
+          "96.44.189.110, 130.176.65.139"
+      ],
+      "X-Forwarded-Port": [
+          "443"
+      ],
+      "X-Forwarded-Proto": [
+          "https"
+      ]
+  },
+  "queryStringParameters": null,
+  "multiValueQueryStringParameters": null,
+  "pathParameters": null,
+  "stageVariables": null,
+  "requestContext": {
+      "resourceId": "jir2hj",
+      "resourcePath": "/hello",
+      "httpMethod": "GET",
+      "extendedRequestId": "KxOZ_HaBiYcFlwA=",
+      "requestTime": "22/Dec/2021:20:56:44 +0000",
+      "path": "/dev/hello",
+      "accountId": "498455082353",
+      "protocol": "HTTP/1.1",
+      "stage": "dev",
+      "domainPrefix": "5ct1wggkxd",
+      "requestTimeEpoch": 1640206604512,
+      "requestId": "e33a7aa9-f856-4445-980f-e06b936af82f",
+      "identity": {
+          "cognitoIdentityPoolId": null,
+          "accountId": null,
+          "cognitoIdentityId": null,
+          "caller": null,
+          "sourceIp": "96.44.189.110",
+          "principalOrgId": null,
+          "accessKey": null,
+          "cognitoAuthenticationType": null,
+          "cognitoAuthenticationProvider": null,
+          "userArn": null,
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101 Firefox/96.0",
+          "user": null
+      },
+      "domainName": "5ct1wggkxd.execute-api.us-east-2.amazonaws.com",
+      "apiId": "5ct1wggkxd"
+  },
+  "body": null,
+  "isBase64Encoded": false
+}
