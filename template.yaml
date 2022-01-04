@@ -32,6 +32,7 @@ Resources:
   RestApi:
     Type: AWS::Serverless::Api
     Properties:
+      Name: ServerlessRestAPI
       OpenApiVersion: 3.0.1
       MethodSettings:
         - HttpMethod: "*"
@@ -42,7 +43,6 @@ Resources:
       AccessLogSetting:
         DestinationArn: !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${ApiAccessLogGroup}"
         Format: '$context.identity.sourceIp $context.authorizer.claims.sub [$context.requestTime] "$context.httpMethod $context.resourcePath $context.protocol" $context.status $context.requestId $context.awsEndpointRequestId $context.xrayTraceId $context.responseLatency $context.integrationLatency "$context.error.message"'
-      Name: ServerlessRestApi
       StageName: !Ref StageNameParam
       TracingEnabled: true
       Cors:

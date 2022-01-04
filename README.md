@@ -1,7 +1,7 @@
 # Serverless API Starter
 
 To build:  
-`sam build`
+`./pre-build.sh && sam build`
 
 To deploy:  
 `sam deploy --guided # first time`  
@@ -15,6 +15,7 @@ Run commands like format, lint, and test from the `api/` directory.
 * `npm run format`
 * `npm run lint`
 * `npm run test`
+  * Run `./pre-build.sh` from the root directory before running `npm run test`.
 
 Below are instructions provided by AWS SAM.
 

@@ -1,6 +1,8 @@
+/* eslint-disable node/no-missing-require, node/no-unpublished-require */
 // const AWSXRay = require('aws-xray-sdk-core');
 // const AWS = AWSXRay.captureAWS(require('aws-sdk'));
 const { metricScope, Unit } = require('aws-embedded-metrics');
+/* eslint-enable node/no-missing-require, node/no-unpublished-require */
 
 // response helper
 const response = (statusCode, body, additionalHeaders) => ({
