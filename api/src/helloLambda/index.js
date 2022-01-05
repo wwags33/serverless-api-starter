@@ -26,7 +26,7 @@ exports.helloFromLambdaHandler = metricScope(
   (metrics) => async (event, context) => {
     metrics.setNamespace(process.env.METRICS_NAMESPACE);
     metrics.putDimensions({ Service: 'hello' });
-    metrics.setProperty('RequestId', context.requestId);
+    metrics.setProperty('RequestId', context.awsRequestId);
     if (!isValidRequest(context, event)) {
       metrics.putMetric('Error', 1, Unit.Count);
       return response(400, { message: 'Error: Invalid request' });
