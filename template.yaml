@@ -9,6 +9,7 @@ Description: >-
 Globals:
   Function:
     Runtime: nodejs14.x
+    Handler: index.handler
     Timeout: 60
     Tracing: Active
     Environment:
@@ -17,10 +18,10 @@ Globals:
     Layers:
       - !Ref libs
 
-Parameters:
-  StageNameParam:
-    Type: String
-    Default: dev
+# Parameters:
+#   StageNameParam:
+#     Type: String
+#     Default: dev
 
 Resources:
   ApiAccessLogGroup:
@@ -42,8 +43,8 @@ Resources:
           LoggingLevel: INFO
       AccessLogSetting:
         DestinationArn: !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${ApiAccessLogGroup}"
-        Format: '$context.identity.sourceIp $context.authorizer.claims.sub [$context.requestTime] "$context.httpMethod $context.resourcePath $context.protocol" $context.status $context.requestId $context.awsEndpointRequestId $context.xrayTraceId $context.responseLatency $context.integrationLatency "$context.error.message"'
-      StageName: !Ref StageNameParam
+        Format: '$context.identity.sourceIp $context.authorizer.claims.sub [$context.requestTime] "$context.httpMethod $context.resourcePath $context.protocol" $context.status $context.awsRequestId $context.awsEndpointRequestId $context.xrayTraceId $context.responseLatency $context.integrationLatency "$context.error.message"'
+      StageName: api
       TracingEnabled: true
       Cors:
         AllowOrigin: "'*'"
@@ -53,7 +54,7 @@ Resources:
   libs:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: SdkAndMetrics
+      LayerName: TracingAndMetrics
       Description: Common lambda node dependencies.
       ContentUri: api/src/libs
       CompatibleRuntimes:
@@ -63,10 +64,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: api/src/helloLambda
-      Handler: index.helloFromLambdaHandler
       Tracing: Active
       Policies:
-        # Give Lambda basic execution Permission to the helloFromLambda
         - CloudWatchPutMetricPolicy: {}
       Events:
         GetHello:
@@ -80,10 +79,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: api/src/goodbyeLambda
-      Handler: index.goodbyeFromLambdaHandler
       Tracing: Active
       Policies:
-        # Give Lambda basic execution Permission to the helloFromLambda
         - CloudWatchPutMetricPolicy: {}
       Events:
         GetGoodbye:

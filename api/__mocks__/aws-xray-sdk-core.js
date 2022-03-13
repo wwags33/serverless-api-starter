@@ -1,3 +1,3 @@
 module.exports = {
-  captureAWS: jest.fn((x) => x),
+  captureAWSv3Client: jest.fn((x) => x),
 };

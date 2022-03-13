@@ -5,7 +5,7 @@
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint .",
-    "test": "jest"
+    "test": "AWS_EMF_ENVIRONMENT=Local jest"
   },
   "keywords": [],
   "author": "",

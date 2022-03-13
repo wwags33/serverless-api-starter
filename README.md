@@ -15,7 +15,11 @@ Run commands like format, lint, and test from the `api/` directory.
 * `npm run format`
 * `npm run lint`
 * `npm run test`
-  * Run `./pre-build.sh` from the root directory before running `npm run test`.
+  * Run `./pre-test.sh` to install all dependencies before running `npm run test`.
+
+The AWS Embedded Metrics and AWS X-Ray Tracing SDK are included in a shared lambda layer. To use the AWS SDK, install the desired v3 module in the function directory.
+
+TypeScript support will be added as soon as esbuild is fully supported by AWS SAM (it is currently in "public preview")
 
 Below are instructions provided by AWS SAM.
 
