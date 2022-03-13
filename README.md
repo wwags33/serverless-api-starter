@@ -19,9 +19,11 @@ Run commands like format, lint, and test from the `api/` directory.
 
 The AWS Embedded Metrics and AWS X-Ray Tracing SDK are included in a shared lambda layer. To use the AWS SDK, install the desired v3 module in the function directory.
 
-TypeScript support will be added as soon as esbuild is fully supported by AWS SAM (it is currently in "public preview")
+TypeScript support will be added as soon as esbuild is fully supported by AWS SAM (it is currently in "public preview").
 
 Below are instructions provided by AWS SAM.
+
+---
 
 This project contains source code and supporting files for a serverless application that you can deploy with the AWS Serverless Application Model (AWS SAM) command line interface (CLI). It includes the following files and folders:
 
