@@ -28,16 +28,20 @@ exports.handler = metricScope((metrics) => async (event, context) => {
   metrics.setProperty('Event', event);
   // If POST, metrics.setProperty('Payload', ...) after successful JSON parse
   if (!isValidRequest(event)) {
-    metrics.putMetric('Error', 1, Unit.Count);
-    return response(400, { message: 'Error: Invalid request' });
+    metrics.putMetric('InvalidRequest', 1, Unit.Count);
+    return response(400, {
+      status: 'Error',
+      message: 'Invalid request',
+    });
   }
   try {
     const message = 'Goodbye from Lambda!';
     console.info(`${message}`);
     metrics.putMetric('Success', 1, Unit.Count);
-    return response(200, { message });
+    return response(200, { status: 'OK', message });
   } catch (err) {
-    metrics.putMetric('Error', 1, Unit.Count);
-    return response(500, { message: err.message });
+    console.error(err);
+    metrics.putMetric('UnknownError', 1, Unit.Count);
+    return response(500, { status: 'Error', message: 'Server error!' });
   }
 });
