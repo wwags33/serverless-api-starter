@@ -4,6 +4,9 @@ module.exports = {
     node: true,
     es6: true,
   },
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
   plugins: ['node'],
   extends: ['eslint:recommended', 'plugin:node/recommended', 'prettier'],
   overrides: [
